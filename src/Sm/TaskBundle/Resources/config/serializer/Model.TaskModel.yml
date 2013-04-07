@@ -1,0 +1,17 @@
+Sm\TaskBundle\Model\TaskModel:
+    exclusion_policy: ALL
+    properties:
+        description:
+            expose: true
+            type: string
+        completed_at:
+            expose: true
+            type: DateTime
+        due_at:
+            expose: true
+            type: DateTime
+        priority_name:
+            expose: true
+            type: string
+
+

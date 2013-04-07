@@ -1,0 +1,27 @@
+Sm\TaskBundle\Entity\Task:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+            groups: [task]
+        description:
+            expose: true
+            type: string
+            groups: [task]
+        createdAt:
+            expose: true
+            type: DateTime
+            groups: [task]
+        completedAt:
+            expose: true
+            type: DateTime
+            groups: [task]
+        dueAt:
+            expose: true
+            type: DateTime
+            groups: [task]
+        priority:
+            expose: true
+            type: Sm\TaskBundle\Entity\Priority
+            groups: [task_priority]

@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    #<IfModule mod_vhost_alias.c>
+    #    RewriteBase /
+    #</IfModule>
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ app.php [QSA,L]
+</IfModule>
+
+php_value xdebug.max_nesting_level 200
+php_value xdebug.var_display_max_depth 200
+php_value xdebug.var_display_max_data 1000
+php_value xdebug.remote_enable On
+php_value xdebug.remote_host "192.168.56.1"

@@ -1,0 +1,144 @@
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+<!DOCTYPE html>
+
+{% block html_tag %}
+<html>
+{% endblock html_tag %}
+
+{% block head %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+    {% stylesheets
+        '@SmCoreBundle/Resources/public/js/bootstrap/css/bootstrap.css'
+        '@SmCoreBundle/Resources/public/css/main.css'
+    %}
+        <link type="text/css" rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets  %}
+
+    {% stylesheets
+        '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
+    %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+
+    {% javascripts
+        'http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'
+        'http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js'
+        'http://malsup.github.com/jquery.form.js'
+        '@SmCoreBundle/Resources/public/js/main.js'
+        '@SmCoreBundle/Resources/public/js/bootstrap/js/bootstrap.js'
+        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+    %}
+       <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <style type="text/css">
+        {% block head_style %}
+        {# Overwrite this block to add your own js here, to get them generated into final files #}
+        {% endblock head_style %}
+    </style>
+
+    <script>
+        {% block head_script %}
+        {# Overwrite this block to add your own js here, to get them generated into final files #}
+        {% endblock head_script %}
+    </script>
+
+
+
+
+    <title>{% block title %}{{ 'Task App'|trans }}{% endblock title %}</title>
+
+    {% block head_bottom %}
+    {% endblock head_bottom %}
+</head>
+{% endblock head %}
+
+<body data-spy="scroll">
+
+    {% block body_start %}
+    {% endblock body_start %}
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/">
+                    Task App
+                </a>
+
+                <div id="loading"></div>
+
+            </div>
+        </div>
+    </div>
+
+    {% block container %}
+        <div class="{% block container_class %}container-fluid{% endblock container_class %}" style="overflow: hidden; padding-top: 70px">
+            {% block header %}
+            {% endblock header %}
+
+            <div class="content">
+                <div class="row-fluid">
+                    <div class="span2 border-right sidebar">
+                        {% block content_sidebar %}
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        {% endblock content_sidebar %}
+                    </div>
+                    <div class="span10" style="padding-right: 20px;padding-top: 10px;">
+                        <div id="alert-messages">
+                            {% block flashes %}
+                                {% if app.session.flashbag.peekAll|length > 0 %}
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                        {{ session_flash() }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endblock flashes %}
+                        </div>
+
+                        {% block content %}
+                        {% endblock content %}
+                    </div>
+                    <div class="span2 border-left sidebar hide">
+                        {% block content_sidebar2 %}
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        {% endblock content_sidebar2 %}
+                    </div>
+                </div>
+            </div>
+            <footer>
+                {% block footer %}
+                {% endblock footer %}
+            </footer>
+        </div> <!-- /container -->
+    {% endblock container %}
+
+    {% block foot_script %}
+    {% endblock foot_script %}
+
+</body>
+</html>
+

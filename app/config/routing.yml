@@ -1,0 +1,12 @@
+sm_core:
+    resource: "@SmCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+sm_task:
+    resource: "@SmTaskBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api

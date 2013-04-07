@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+
+{% block title %}Task list{% endblock %}
+
+{% block content %}
+
+    <table class="task_list table table-striped table-bordered">
+        {% include 'SmTaskBundle:Task:list.html.twig' %}
+    </table>
+
+    <p>
+        <a class="btn btn-success ajax-modal" href="{{ path('task_new') }}" data-callback="tasks_reload">
+            <i class="icon-plus icon-white"></i>
+            Create new task
+        </a>
+    </p>
+
+    <script type="text/javascript">
+    var tasklist = $('.task_list');
+
+    $(function(){
+        tasklist.on('click', '.btn-danger', function(e){
+            e.preventDefault();
+
+            if (confirm("{{ 'Are you sure you want to delete this?'|trans }}")) {
+                $.post($(this).attr('href'), function(){
+                    tasks_reload();
+                }, 'json');
+            }
+        }).on('click', 'thead a, tfoot a', function(e){
+            e.preventDefault();
+
+            tasklist.load($(this).attr('href'));
+        });
+    });
+
+    function tasks_reload()
+    {
+        tasklist.load("{{ path('task') }}");
+    };
+    </script>
+
+{% endblock %}
